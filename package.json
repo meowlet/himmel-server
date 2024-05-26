@@ -6,7 +6,12 @@
     "dev": "bun run --watch src/index.ts"
   },
   "dependencies": {
-    "elysia": "latest"
+    "@elysiajs/jwt": "^1.0.2",
+    "@types/bcrypt": "^5.0.2",
+    "bcrypt": "^5.1.1",
+    "elysia": "latest",
+    "mongodb": "^6.6.2",
+    "mongoose": "^8.4.0"
   },
   "devDependencies": {
     "bun-types": "latest"
