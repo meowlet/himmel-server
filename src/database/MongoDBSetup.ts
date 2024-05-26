@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const mongoDBURI = process.env.MONGODB_URI || "MONGD_URI";
+const mongoDBURI = process.env.MONGODB_URI || "MONGDB_URI";
 
 await mongoose.connect(mongoDBURI);
 
