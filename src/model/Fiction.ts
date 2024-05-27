@@ -1,5 +1,6 @@
-import { Schema, model } from "mongoose";
+import { Schema, Types, model } from "mongoose";
 import { IFiction } from "./Interface";
+import { ObjectId } from "mongodb";
 
 const fictionSchema = new Schema<IFiction>({
   title: { type: String, required: true },
@@ -8,5 +9,4 @@ const fictionSchema = new Schema<IFiction>({
   content: [{ type: Schema.Types.ObjectId, ref: "Chapter" }],
   status: String,
 });
-
 export const Fiction = model<IFiction>("Fiction", fictionSchema);

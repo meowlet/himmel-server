@@ -18,7 +18,12 @@ export const AuthPlugin = async (app: Elysia) =>
       if (!token) {
         throw new Error("Please authenticate");
       }
-      return {
-        decodedToken: await jwt.verify(token),
-      };
+      const decodedToken = await jwt.verify(token);
+      if (!decodedToken) {
+        throw new Error("Error authenticating");
+      } else {
+        return {
+          decodedToken: decodedToken,
+        };
+      }
     });
