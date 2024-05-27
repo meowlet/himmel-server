@@ -1,5 +1,5 @@
 import jwt from "@elysiajs/jwt";
-import * as UserService from "../service/UserService";
+import * as UserRepository from "../../repository/UserRepository";
 import Elysia, { t } from "elysia";
 
 export const SignInController = async (app: Elysia) =>
@@ -20,12 +20,16 @@ export const SignInController = async (app: Elysia) =>
           }),
         )
         .derive(async ({ body, jwt }) => {
-          const user = await UserService.signIn(body.identifier, body.password);
+          const user = await UserRepository.signIn(
+            body.identifier,
+            body.password,
+          );
           return {
             token: await jwt.sign({ _id: user._id.toString() }),
           };
         })
         .post("/signin", async ({ token, set }) => {
           set.headers["authorization"] = `Bearer ${token}`;
+          console.log("token", token);
         }),
   );

@@ -1,6 +1,6 @@
 import Elysia, { t } from "elysia";
-import User from "../model/User";
-import * as UserService from "../service/UserService";
+import User from "../../model/User";
+import * as UserRepository from "../../repository/UserRepository";
 
 export const SignUpController = (app: Elysia) =>
   app.guard(
@@ -18,7 +18,7 @@ export const SignUpController = (app: Elysia) =>
           email: body.email,
           password: body.password,
         });
-        await UserService.signUp(user);
+        await UserRepository.signUp(user);
         return user;
       }),
   );
