@@ -20,3 +20,9 @@ export interface IChapter {
   title: string;
   index: number;
 }
+
+export interface IRole {
+  name: string;
+  description: string;
+  permissions: { resource: string; actions: string[] }[];
+}
