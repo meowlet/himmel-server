@@ -3,6 +3,7 @@ import "./database/MongoDBSetup";
 import { getErrorMessage } from "./util/Error";
 import { UserApplication } from "./app/UserApp";
 import { FictionApplication } from "./app/FictionApp";
+import { RoleApplication } from "./app/RoleApp";
 
 new Elysia()
   .onError(({ code, error, set }) => {
@@ -14,7 +15,9 @@ new Elysia()
     }
     return new Response(`Error: ${getErrorMessage(error)} (${code})`);
   })
-  .group("/api", (app) => app.use(UserApplication).use(FictionApplication))
+  .group("/api", (app) =>
+    app.use(UserApplication).use(FictionApplication).use(RoleApplication),
+  )
   .listen(3000, (app) => {
     console.log(`🦊 Elysia is running at ${app.hostname}:${app.port}`);
   });
