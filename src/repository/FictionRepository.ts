@@ -27,7 +27,7 @@ export async function brutalDeleteFiction(fictionId: String): Promise<void> {
 }
 
 export async function getFictionById(fictionId: String) {
-  const fiction = await Fiction.findById(fictionId);
+  const fiction = await Fiction.findById(fictionId).populate("author");
   console.log(fiction);
   if (!fiction) {
     throw new Error("Fiction not found.");
