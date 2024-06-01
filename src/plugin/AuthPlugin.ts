@@ -1,10 +1,6 @@
 import jwt from "@elysiajs/jwt";
 import Elysia from "elysia";
 
-export interface CustomRequest extends Request {
-  token: string;
-}
-
 export const AuthPlugin = async (app: Elysia) =>
   app
     .use(
@@ -23,7 +19,7 @@ export const AuthPlugin = async (app: Elysia) =>
         throw new Error("Error authenticating");
       } else {
         return {
-          decodedToken: decodedToken,
+          decodedToken: decodedToken as { userId: string },
         };
       }
     });
