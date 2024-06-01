@@ -9,7 +9,7 @@ export const DeleteFictionController = (app: Elysia) =>
       .delete("/fiction/:id", async ({ decodedToken, params }) => {
         await FictionRepository.deleteFiction(
           params.id,
-          decodedToken._id.toString(),
+          decodedToken.userId.toString(),
         );
       }),
   );

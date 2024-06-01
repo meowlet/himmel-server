@@ -1,6 +1,6 @@
 import Elysia, { t } from "elysia";
 import { AuthPlugin } from "../../plugin/AuthPlugin";
-import { Role } from "../../model/Role";
+import { Action, Resource, Role } from "../../model/Role";
 import * as RoleRepository from "../../repository/RoleRepository";
 
 export const AddRoleController = async (app: Elysia) =>
@@ -10,19 +10,25 @@ export const AddRoleController = async (app: Elysia) =>
         name: t.String(),
         description: t.String(),
         permissions: t.Array(
-          t.Object({ resource: t.String(), actions: t.Array(t.String()) }),
+          t.Object({
+            resource: t.Enum(Resource),
+            actions: t.Array(t.Enum(Action)),
+          }),
         ),
       }),
     },
     (app) =>
       app.use(AuthPlugin).post("/role", async ({ body, decodedToken }) => {
-        console.log("body", body);
+        await RoleRepository.checkPermission(
+          decodedToken.userId,
+          Resource.ROLE,
+          Action.WRITE,
+        );
         const role = new Role({
           name: body.name,
           description: body.description,
           permissions: body.permissions,
         });
-        console.log("role", role);
         await RoleRepository.addRole(role);
         return role;
       }),

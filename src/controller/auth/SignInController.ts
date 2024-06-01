@@ -24,8 +24,11 @@ export const SignInController = async (app: Elysia) =>
             body.identifier,
             body.password,
           );
+
           return {
-            token: await jwt.sign({ _id: user._id.toString() }),
+            token: await jwt.sign({
+              userId: user._id.toString(),
+            }),
           };
         })
         .post("/signin", async ({ token, set }) => {

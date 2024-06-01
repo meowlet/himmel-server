@@ -21,7 +21,7 @@ export const AddFictionController = (app: Elysia) =>
       app.use(AuthPlugin).post("/fiction", async ({ body, decodedToken }) => {
         const fiction = new Fiction({
           title: body.title,
-          author: new Types.ObjectId(decodedToken._id),
+          author: new Types.ObjectId(decodedToken.userId),
           description: body.description,
           status: body.status,
         });
