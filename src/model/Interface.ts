@@ -1,10 +1,12 @@
 import { Types } from "mongoose";
+import { Action, Resource } from "./Role";
 
 export interface IUser {
   email: string;
   userName: string;
   password: string;
   displayName: string;
+  roles: Array<Types.ObjectId>;
   bio: string;
 }
 
@@ -24,5 +26,5 @@ export interface IChapter {
 export interface IRole {
   name: string;
   description: string;
-  permissions: { resource: string; actions: string[] }[];
+  permissions: { resource: Resource; actions: Action[] }[];
 }
