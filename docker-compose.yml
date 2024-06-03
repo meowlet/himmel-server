@@ -1,0 +1,14 @@
+version: '3.5'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: himmel
+    ports:
+      - '3212:3212'
+    volumes:
+      - .:/himmel
+      - /app/node_modules
+    restart: unless-stopped
