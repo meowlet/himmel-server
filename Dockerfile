@@ -11,7 +11,7 @@ COPY package.json ./
 RUN npm install -g npm@latest
 
 # Install dependencies
-RUN npm install
+RUN bun install
 
 # Copy src file to docker
 COPY . .
