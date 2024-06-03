@@ -10,6 +10,9 @@ COPY package.json ./
 # Update npm to latest version
 RUN npm install -g npm@latest
 
+# Install bun package
+RUN npm install -g bun
+
 # Install dependencies
 RUN bun install
 
