@@ -47,4 +47,3 @@ Himmel is a web server designed to reach for the stars, built upon the blazing-f
    ```
 
    Himmel will now be listening on http://localhost:3000 (or the port you've configured).
-
