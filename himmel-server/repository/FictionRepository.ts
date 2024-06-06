@@ -19,6 +19,14 @@ export async function deleteFiction(
   }
 }
 
+export async function getAllFiction() {
+  const allFictions = await Fiction.find();
+  if (!allFictions) {
+    throw new Error("No fiction found");
+  }
+  return allFictions;
+}
+
 export async function brutalDeleteFiction(fictionId: String): Promise<void> {
   const deleteFiction = await Fiction.findByIdAndDelete(fictionId);
   if (!deleteFiction) {
@@ -33,4 +41,19 @@ export async function getFictionById(fictionId: String) {
     throw new Error("Fiction not found.");
   }
   return fiction;
+}
+
+export async function updateFiction(
+  fictionId: String,
+  userId: String,
+  updatedFictionData: Partial<IFiction>,
+) {
+  const updateFiction = await Fiction.findOneAndUpdate(
+    { _id: fictionId, author: userId },
+    updatedFictionData,
+  );
+  if (!updateFiction) {
+    throw new Error("Fiction not found or you are not the author.");
+  }
+  return updateFiction;
 }
