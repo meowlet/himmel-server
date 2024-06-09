@@ -1,0 +1,22 @@
+.container {
+  position: sticky;
+  padding-left: 2%;
+  padding-right: 2%;
+  top: 0;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background-color 0.3s ease;
+  z-index: 100
+}
+
+.containerScrolled {
+  background-color: var(--surface);
+}
+
+.logo {
+  color: var(--primary);
+  font-weight: bold;
+  font-size: 30px;
+}

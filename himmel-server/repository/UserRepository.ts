@@ -25,3 +25,12 @@ export async function signIn(identifier: string, password: string) {
     throw new Error("Password does not match!");
   }
 }
+
+export async function getAllUser() {
+  const allUser = await User.find();
+  if (!allUser) {
+    throw Error("No user found");
+  }
+
+  return allUser;
+}

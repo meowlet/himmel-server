@@ -1,11 +1,9 @@
-import { jscDescribe } from "bun:jsc";
 import { IRole } from "../model/Interface";
 import { Action, Resource, Role } from "../model/Role";
 import User from "../model/User";
-import { FictionApplication } from "../app/FictionApp";
-import { Fiction } from "../model/Fiction";
 
 export async function addRole(role: IRole) {
+  console.log(role)
   return await Role.create(role);
 }
 
@@ -18,6 +16,10 @@ export async function addRoleToAUser(roleId: string, userId: string) {
     { _id: userId },
     { $addToSet: { roles: roleId } },
   );
+}
+
+export async function getAllRole() {
+  return Role.find()
 }
 
 export async function checkPermission(
@@ -41,4 +43,15 @@ export async function checkPermission(
   }
 
   throw new Error("Permission denied");
+}
+
+export async function updateRole(
+  roleId: string,
+  updatedRoleData: Partial<IRole>,
+) {
+  const updatedRole = await Role.findByIdAndUpdate(roleId, updatedRoleData);
+  if (!updatedRole) {
+    throw new Error("Role not found");
+  }
+  return updatedRole;
 }

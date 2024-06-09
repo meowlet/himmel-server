@@ -1,0 +1,45 @@
+.container {
+  display: flex;
+  gap: 100px;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.textContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.imgContainer {
+  flex: 1;
+  position: relative;
+}
+
+.title {
+  font-size: var(--display-medium);
+}
+.subtitle {
+  font-size: var(--title-medium);
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.button {
+  min-width: 120px;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  background-color: var(--tertiary);
+  color: var(--on-tertiary);
+  cursor: pointer;
+  font-size: var(--title-small);
+  border: none;
+}
+.button:first-child {
+  background-color: var(--primary);
+  color: var(--on-primary);
+}
